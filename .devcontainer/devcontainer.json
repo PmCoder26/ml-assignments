@@ -1,0 +1,28 @@
+{
+    "name": "ML DevContainer",
+  
+    // Use your prebuilt Docker image from DockerHub
+    "image": "parimalmatte/ml-dev-container:v0.1",
+  
+    // Environment variables for GitHub authentication
+    "containerEnv": {
+      "GITHUB_USER": "${localEnv:GITHUB_USER}",
+      "GITHUB_EMAIL": "${localEnv:GITHUB_EMAIL}",
+      "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+    },
+  
+    // Automatically configure git with your credentials
+    "postCreateCommand": "git config --global user.name $GITHUB_USER && git config --global user.email $GITHUB_EMAIL && git config --global credential.helper store",
+  
+    // VS Code extensions for Python and Jupyter development
+    "customizations": {
+      "vscode": { 
+        "extensions": [
+          "ms-python.python",
+          "ms-toolsai.jupyter",
+          "ms-python.vscode-pylance",
+          "github.vscode-pull-request-github"        
+        ]
+      }
+    }
+}
